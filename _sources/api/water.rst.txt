@@ -1,0 +1,15 @@
+water package
+=============
+
+.. automodule:: water
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+Submodules
+----------
+
+.. toctree::
+
+   water.water
+

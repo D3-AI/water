@@ -1,0 +1,7 @@
+water.water module
+==================
+
+.. automodule:: water.water
+    :members:
+    :undoc-members:
+    :show-inheritance:
