@@ -10,6 +10,11 @@ with open('HISTORY.md') as history_file:
     history = history_file.read()
 
 install_requires = [
+    'baytune==0.2.3',
+    'mlblocks==0.2.3',
+    'mlprimitives==0.1.3',
+    'scikit-learn==0.20.1',
+    'numpy==1.15.4'
 ]
 
 setup_requires = [
