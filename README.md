@@ -5,6 +5,5 @@
 
 Water
 
-- Free software: MIT license
 - Documentation: https://D3-AI.github.io/water
 - Homepage: https://github.com/D3-AI/water
