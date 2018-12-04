@@ -4,6 +4,7 @@
 """Tests for `water` package."""
 import warnings
 from unittest import TestCase
+from unittest.mock import MagicMock, patch
 
 import pandas as pd
 from sklearn.metrics import f1_score
@@ -100,9 +101,10 @@ class TestTimeSeriesClassifier(TestCase):
         assert result['entities'] == expected_entities
         assert result['relationships'] == expected_relationships
 
-    def test_tune(self):
+    @patch('water.water.GP')
+    def test_tune(self, gp_mock):
         """tune select the best hyperparameters for the given data."""
-        # Setup
+        # Setup - Data
         time_index = 'timeseries_id'
         index = 'D3MIndex'
 
@@ -121,23 +123,44 @@ class TestTimeSeriesClassifier(TestCase):
             'value': [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1]
         })
 
+        # Setup - Classifier
+        iterations = 2
         scorer = f1_score
         cv = StratifiedKFold(n_splits=2, shuffle=True)
         instance = TimeSeriesClassifier(cv=cv, scorer=scorer)
-        initial_score = instance.score_pipeline(instance.pipeline, X, y, data, time_index, index)
+        tunables, tunable_keys = instance.get_tunables()
+
+        # Setup - Mock
+        gp_mock_instance = MagicMock()
+        gp_mock.return_value = gp_mock_instance
+        expected_propose_calls = [((1, ), ), ((1, ), )]
+        expected_best_score = 0.0
+        param_tuples = instance.to_tuples(instance.pipeline.get_hyperparameters(), tunable_keys)
+        expected_add_calls = [
+            ((param_tuples, expected_best_score), ),
+            ((gp_mock_instance.propose.return_value, expected_best_score), ),
+            ((gp_mock_instance.propose.return_value, expected_best_score), ),
+        ]
 
         # Run
-        instance.tune(X, y, data, time_index, index, iterations=1)
-        final_score = instance.score_pipeline(instance.pipeline, X, y, data, time_index, index)
+        instance.tune(X, y, data, time_index, index, iterations=iterations)
 
         # Check
-        assert instance.tuner is not None
+        gp_mock.assert_called_once_with(tunables)
+        assert instance.tuner == gp_mock_instance
+
+        assert gp_mock_instance.propose.call_count == iterations
+        assert gp_mock_instance.propose.call_args_list == expected_propose_calls
+
+        assert gp_mock_instance.add.call_count == iterations + 1
+        assert gp_mock_instance.add.call_args_list == expected_add_calls
+
         assert instance.fitted is False
-        assert initial_score <= final_score
 
-    def test_fit(self):
+    @patch('water.water.MLPipeline')
+    def test_fit(self, pipeline_mock):
         """fit prepare the pipeline to make predictions based on the given data."""
-        # Setup
+        # Setup - Data
         time_index = 'timeseries_id'
         index = 'D3MIndex'
 
@@ -156,19 +179,32 @@ class TestTimeSeriesClassifier(TestCase):
             'value': [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1]
         })
 
+        # Setup - Mock
+        pipeline_mock_instance = MagicMock()
+        pipeline_mock.from_dict.return_value = pipeline_mock_instance
+
+        # Setup - Classifier
         scorer = f1_score
         cv = StratifiedKFold(n_splits=2, shuffle=True)
         instance = TimeSeriesClassifier(cv=cv, scorer=scorer)
+
+        # Setup - Expected results
+        expected_fit_args = instance.get_pipeline_args(X, y, data, time_index, index)
 
         # Run
         instance.fit(X, y, data, time_index, index)
 
         # Check
+        pipeline_mock.from_dict.assert_called_once_with(instance.template)
+        assert instance.pipeline == pipeline_mock_instance
+
+        pipeline_mock_instance.fit.assert_called_once_with(**expected_fit_args)
         assert instance.fitted
 
-    def test_predict(self):
-        """fit prepare the pipeline to make predictions based on the given data."""
-        # Setup
+    @patch('water.water.MLPipeline')
+    def test_predict(self, pipeline_mock):
+        """predict produces results using the pipeline."""
+        # Setup - Data
         time_index = 'timeseries_id'
         index = 'D3MIndex'
 
@@ -187,13 +223,28 @@ class TestTimeSeriesClassifier(TestCase):
             'value': [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1]
         })
 
+        # Setup - Mock
+        pipeline_mock_instance = MagicMock()
+        pipeline_mock.from_dict.return_value = pipeline_mock_instance
+
+        # Setup - Classifier
         scorer = f1_score
         cv = StratifiedKFold(n_splits=2, shuffle=True)
         instance = TimeSeriesClassifier(cv=cv, scorer=scorer)
         instance.fit(X, y, data, time_index, index)
+
+        # Setup - Expected results
+        expected_fit_args = instance.get_pipeline_args(X, y, data, time_index, index)
+        expected_predict_args = instance.get_pipeline_args(X, None, data, time_index, index)
+
         # Run
-        predictions = instance.predict(X, data, time_index, index)
+        instance.predict(X, data, time_index, index)
 
         # Check
+        pipeline_mock.from_dict.assert_called_once_with(instance.template)
+        assert instance.pipeline == pipeline_mock_instance
+
+        pipeline_mock_instance.fit.assert_called_once_with(**expected_fit_args)
         assert instance.fitted
-        assert predictions.shape == y.shape
+
+        pipeline_mock_instance.predict.assert_called_once_with(**expected_predict_args)
