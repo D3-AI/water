@@ -101,6 +101,18 @@ class TestTimeSeriesClassifier(TestCase):
         assert result['entities'] == expected_entities
         assert result['relationships'] == expected_relationships
 
+    def test__is_better(self):
+        """_is_better only return true if the first arg is greater than the second."""
+        # Setup
+        scorer = f1_score
+        cv = StratifiedKFold(n_splits=5, shuffle=True)
+        instance = TimeSeriesClassifier(cv=cv, scorer=scorer)
+
+        # Run / Check
+        assert not instance._is_better(0, 1)
+        assert not instance._is_better(1, 1)
+        assert instance._is_better(1, 0)
+
     @patch('water.water.GP')
     def test_tune(self, gp_mock):
         """tune select the best hyperparameters for the given data."""

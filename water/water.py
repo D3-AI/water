@@ -55,6 +55,12 @@ class TimeSeriesEstimator(object):
     def clone_pipeline(pipeline):
         return MLPipeline.from_dict(pipeline.to_dict())
 
+    def _is_better(self, score, best_score):
+        if self.maximize_score:
+            return score > best_score
+
+        return score < best_score
+
     def get_tunables(self):
         tunables = []
         tunable_keys = []
@@ -134,10 +140,6 @@ class TimeSeriesEstimator(object):
 
         """
 
-        assert index in X.columns
-        assert index in data.columns
-        assert time_index in data.columns
-
         entities = {
             'main': (X, index, None),
             'timeseries': (data, time_index, 'time')
@@ -194,7 +196,7 @@ class TimeSeriesEstimator(object):
             self.tuner.add(params, score)
 
             # See if this pipeline is the best one so far
-            if score > best_score:
+            if self._is_better(score, best_score):
                 best_score = score
                 self.set_hyperparameters(param_dicts)
 
