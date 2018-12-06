@@ -12,7 +12,7 @@ from water.utils import remove_dots, restore_dots
 LOGGER = logging.getLogger(__name__)
 
 
-def MongoDB(object):
+class MongoDB(object):
 
     def __init__(self, database=None, config=None, **kwargs):
         if config:
