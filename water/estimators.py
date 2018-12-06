@@ -166,6 +166,10 @@ class TimeSeriesEstimator(object):
             self._best_score = self._score_pipeline(self._pipeline, X, y, data)
             self._tuner = self._get_tuner()
 
+        dataset = data['dataset_name']
+        table = data['target_entity']
+        column = data['target_column']
+
         for i in range(iterations):
             LOGGER.info('Scoring pipeline %s', i + 1)
 
@@ -179,6 +183,9 @@ class TimeSeriesEstimator(object):
             LOGGER.info('Pipeline %s score: %s', i + 1, score)
 
             self._tuner.add(params, score)
+
+            if self._db:
+                self._db.insert_pipeline(candidate, score, dataset, table, column)
 
             if self._is_better(score):
                 self._best_score = score
