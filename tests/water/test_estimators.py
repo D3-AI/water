@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """Tests for `estimators` module."""
-import warnings
+from datetime import datetime
 from unittest import TestCase
 from unittest.mock import MagicMock, patch
 
@@ -12,25 +12,89 @@ from sklearn.model_selection import StratifiedKFold
 
 from water.estimators import TimeSeriesClassifier
 
-warnings.filterwarnings('ignore', category=DeprecationWarning)
-
 
 class TestTimeSeriesClassifier(TestCase):
     """Tests for `TimeSeriesClassifier`."""
 
-    def test___init___default(self):
+    def setUp(self):
+        time_index = 'timeseries_id'
+        index = 'demand_id'
+        dataset_name = 'test_dataset'
+        target_column = 'label'
+
+        timeseries = pd.DataFrame({
+                'timeseries_id': [0, 1, 2, 3, 4],
+        })
+
+        demand = pd.DataFrame(
+            {
+                'label': [1, 1, 2, 2, 1],
+                'demand_id': [0, 1, 2, 3, 4],
+                'timeseries_id': [0, 1, 2, 3, 4],
+                'cutoff_time': [
+                    datetime(2010, 1, 25),
+                    datetime(2010, 1, 25),
+                    datetime(2010, 1, 25),
+                    datetime(2010, 1, 25),
+                    datetime(2010, 1, 25)
+                ]
+            }
+        )
+        self.y = demand.pop(target_column)
+        self.X = demand
+
+        data = pd.DataFrame(
+            {
+                'data_id': [0, 1, 2, 3, 4],
+                'timeseries_id': [0, 0, 1, 1, 2],
+                'timestamp': [
+                    datetime(2010, 1, 1),
+                    datetime(2010, 1, 2),
+                    datetime(2010, 1, 3),
+                    datetime(2010, 1, 4),
+                    datetime(2010, 1, 5)
+                ],
+                'value': [
+                    -0.7105199999999999,
+                    -1.1833,
+                    -1.3724,
+                    -1.5931,
+                    -1.4669999999999999
+                ]
+            }
+        )
+
+        relationships = [
+            ('timeseries', time_index, 'demand', index),
+            ('timeseries', time_index, 'data', 'data_id')
+        ]
+
+        entities = {
+            'timeseries': (timeseries, time_index, ),
+            'demand': (demand, index, 'cutoff_time'),
+            'data': (data, 'data_id', 'timestamp')
+        }
+
+        self.data = {
+            'entities': entities,
+            'relationships': relationships,
+            'target_entity': 'demand',
+            'dataset_name': dataset_name,
+            'target_column': target_column
+        }
+
+    def test___init___cv_splits(self):
         """If cv_splits is passed a new cv object is created with the specified param."""
-        # Setup
-        scorer = f1_score
 
         # Run
-        instance = TimeSeriesClassifier(cv_splits=5, scorer=scorer)
+        instance = TimeSeriesClassifier(cv_splits=5)
 
         # Check
-        assert instance.cv.n_splits == 5
-        assert instance.scorer == scorer
+        assert instance._cv.n_splits == 5
+        assert instance._cost is False
+        assert instance._db is None
+        assert instance._tuner is None
         assert instance.fitted is False
-        assert instance.tuner is None
 
     def test___init___cv_object(self):
         """If a cv object is passed as cv argument, it will be used for cross-validation."""
@@ -42,112 +106,60 @@ class TestTimeSeriesClassifier(TestCase):
         instance = TimeSeriesClassifier(cv=cv, scorer=scorer)
 
         # Check
-        assert instance.cv == cv
-        assert instance.scorer == scorer
+        assert instance._cv == cv
+        assert instance._score == scorer
+        assert instance._cost is False
+        assert instance._db is None
+        assert instance._tuner is None
         assert instance.fitted is False
-        assert instance.tuner is None
 
-    def test___init___no_cv_raises_exception(self):
-        """If no cv or cv_splits argument is passed, a ValueError is raised."""
-        # Setup
-        scorer = f1_score
-
-        # Run/Check
-        with self.assertRaises(ValueError):
-            TimeSeriesClassifier(scorer)
-
-    def test_get_pipeline_args(self):
-        """get_pipeline_arg return the arguments needed for tune, fit and predict."""
-        # Setup
-        time_index = 'timeseries_id'
-        index = 'D3MIndex'
-
-        X = pd.DataFrame({
-            index: [0, 1, 2]
-        })
-        X.set_index(X[index])
-
-        y = pd.Series([0, 1, 0], name=index)
-        y.set_index = y
-
-        data = pd.DataFrame({
-            index: [0, 0, 0, 1, 1, 1, 2, 2, 2],
-            'time': [1, 2, 3, 1, 2, 3, 1, 2, 3],
-            time_index: [0, 1, 2, 3, 4, 5, 6, 7, 8],
-            'value': [0, 1, 0, 1, 0, 1, 0, 1, 0]
-        })
-
-        scorer = f1_score
-        cv = StratifiedKFold(n_splits=5, shuffle=True)
-        instance = TimeSeriesClassifier(cv=cv, scorer=scorer)
-
-        expected_entities = {
-            'main': (X, index, None),
-            'timeseries': (data, time_index, 'time')
-        }
-
-        expected_relationships = [
-            ('main', index, 'timeseries', index)
-        ]
-        expected_target_entity = 'main'
+    def test___init___default_args(self):
+        """__init__ use defaults if no args are passed."""
 
         # Run
-        result = instance.get_pipeline_args(X, y, data, time_index, index)
+        instance = TimeSeriesClassifier()
 
         # Check
-        assert result['X'].equals(X)
-        assert result['y'].equals(y)
-        assert result['target_entity'] == expected_target_entity
-        assert result['entities'] == expected_entities
-        assert result['relationships'] == expected_relationships
+        assert instance._cv.__class__ == TimeSeriesClassifier._cv_class
+        assert instance._cv.n_splits == 5
+        assert instance._cv.shuffle is True
+        assert instance._cv.random_state == 0
+        assert instance._cost is False
+        assert instance._db is None
+        assert instance._tuner is None
+        assert instance.fitted is False
 
     def test__is_better(self):
-        """_is_better only return true if the first arg is greater than the second."""
+        """_is_better only return true if the argument is greater than the _best_score."""
         # Setup
         scorer = f1_score
         cv = StratifiedKFold(n_splits=5, shuffle=True)
         instance = TimeSeriesClassifier(cv=cv, scorer=scorer)
+        instance._best_score = 1
 
         # Run / Check
-        assert not instance._is_better(0, 1)
-        assert not instance._is_better(1, 1)
-        assert instance._is_better(1, 0)
+        assert not instance._is_better(0)
+        assert not instance._is_better(1)
+        assert instance._is_better(2)
 
-    @patch('water.water.GP')
-    def test_tune(self, gp_mock):
+    @patch('water.estimators.TimeSeriesClassifier._score_pipeline')
+    @patch('water.estimators.GP')
+    def test_tune(self, gp_mock, score_mock):
         """tune select the best hyperparameters for the given data."""
-        # Setup - Data
-        time_index = 'timeseries_id'
-        index = 'D3MIndex'
-
-        X = pd.DataFrame({
-            index: [0, 1, 2, 3, 4, 5]
-        })
-        X.set_index(X[index])
-
-        y = pd.Series([0, 1, 0, 1, 0, 1], name=index)
-        y.set_index = y
-
-        data = pd.DataFrame({
-            index: [0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5],
-            'time': [1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3],
-            time_index: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17],
-            'value': [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1]
-        })
 
         # Setup - Classifier
         iterations = 2
-        scorer = f1_score
-        cv = StratifiedKFold(n_splits=2, shuffle=True)
-        instance = TimeSeriesClassifier(cv=cv, scorer=scorer)
-        tunables, tunable_keys = instance.get_tunables()
+        instance = TimeSeriesClassifier()
+        tunables, tunable_keys = instance._get_tunables()
 
         # Setup - Mock
+        score_mock.return_value = 0.0
         gp_mock_instance = MagicMock()
         gp_mock.return_value = gp_mock_instance
+
         expected_propose_calls = [((1, ), ), ((1, ), )]
         expected_best_score = 0.0
-        param_tuples = instance.to_tuples(instance.pipeline.get_hyperparameters(), tunable_keys)
+        param_tuples = instance._to_tuples(instance._pipeline.get_hyperparameters(), tunable_keys)
         expected_add_calls = [
             ((param_tuples, expected_best_score), ),
             ((gp_mock_instance.propose.return_value, expected_best_score), ),
@@ -155,11 +167,11 @@ class TestTimeSeriesClassifier(TestCase):
         ]
 
         # Run
-        instance.tune(X, y, data, time_index, index, iterations=iterations)
+        instance.tune(self.X, self.y, self.data, iterations)
 
         # Check
         gp_mock.assert_called_once_with(tunables)
-        assert instance.tuner == gp_mock_instance
+        assert instance._tuner == gp_mock_instance
 
         assert gp_mock_instance.propose.call_count == iterations
         assert gp_mock_instance.propose.call_args_list == expected_propose_calls
@@ -169,72 +181,30 @@ class TestTimeSeriesClassifier(TestCase):
 
         assert instance.fitted is False
 
-    @patch('water.water.MLPipeline')
+    @patch('water.estimators.MLPipeline')
     def test_fit(self, pipeline_mock):
         """fit prepare the pipeline to make predictions based on the given data."""
-        # Setup - Data
-        time_index = 'timeseries_id'
-        index = 'D3MIndex'
-
-        X = pd.DataFrame({
-            index: [0, 1, 2, 3, 4, 5]
-        })
-        X.set_index(X[index])
-
-        y = pd.Series([0, 1, 0, 1, 0, 1], name=index)
-        y.set_index = y
-
-        data = pd.DataFrame({
-            index: [0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5],
-            'time': [1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3],
-            time_index: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17],
-            'value': [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1]
-        })
 
         # Setup - Mock
         pipeline_mock_instance = MagicMock()
         pipeline_mock.from_dict.return_value = pipeline_mock_instance
 
         # Setup - Classifier
-        scorer = f1_score
-        cv = StratifiedKFold(n_splits=2, shuffle=True)
-        instance = TimeSeriesClassifier(cv=cv, scorer=scorer)
-
-        # Setup - Expected results
-        expected_fit_args = instance.get_pipeline_args(X, y, data, time_index, index)
+        instance = TimeSeriesClassifier()
 
         # Run
-        instance.fit(X, y, data, time_index, index)
+        instance.fit(self.X, self.y, self.data)
 
         # Check
         pipeline_mock.from_dict.assert_called_once_with(instance.template)
-        assert instance.pipeline == pipeline_mock_instance
+        assert instance._pipeline == pipeline_mock_instance
 
-        pipeline_mock_instance.fit.assert_called_once_with(**expected_fit_args)
+        pipeline_mock_instance.fit.assert_called_once_with(self.X, self.y, **self.data)
         assert instance.fitted
 
-    @patch('water.water.MLPipeline')
+    @patch('water.estimators.MLPipeline')
     def test_predict(self, pipeline_mock):
         """predict produces results using the pipeline."""
-        # Setup - Data
-        time_index = 'timeseries_id'
-        index = 'D3MIndex'
-
-        X = pd.DataFrame({
-            index: [0, 1, 2, 3, 4, 5]
-        })
-        X.set_index(X[index])
-
-        y = pd.Series([0, 1, 0, 1, 0, 1], name=index)
-        y.set_index = y
-
-        data = pd.DataFrame({
-            index: [0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5],
-            'time': [1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3],
-            time_index: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17],
-            'value': [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1]
-        })
-
         # Setup - Mock
         pipeline_mock_instance = MagicMock()
         pipeline_mock.from_dict.return_value = pipeline_mock_instance
@@ -243,20 +213,16 @@ class TestTimeSeriesClassifier(TestCase):
         scorer = f1_score
         cv = StratifiedKFold(n_splits=2, shuffle=True)
         instance = TimeSeriesClassifier(cv=cv, scorer=scorer)
-        instance.fit(X, y, data, time_index, index)
-
-        # Setup - Expected results
-        expected_fit_args = instance.get_pipeline_args(X, y, data, time_index, index)
-        expected_predict_args = instance.get_pipeline_args(X, None, data, time_index, index)
+        instance.fit(self.X, self.y, self.data)
 
         # Run
-        instance.predict(X, data, time_index, index)
+        instance.predict(self.X, self.data)
 
         # Check
         pipeline_mock.from_dict.assert_called_once_with(instance.template)
-        assert instance.pipeline == pipeline_mock_instance
+        assert instance._pipeline == pipeline_mock_instance
 
-        pipeline_mock_instance.fit.assert_called_once_with(**expected_fit_args)
+        pipeline_mock_instance.fit.assert_called_once_with(self.X, self.y, **self.data)
         assert instance.fitted
 
-        pipeline_mock_instance.predict.assert_called_once_with(**expected_predict_args)
+        pipeline_mock_instance.predict.assert_called_once_with(self.X, **self.data)
