@@ -1,0 +1,7 @@
+water.db module
+===============
+
+.. automodule:: water.db
+    :members:
+    :undoc-members:
+    :show-inheritance:

@@ -1,0 +1,7 @@
+water.estimators module
+=======================
+
+.. automodule:: water.estimators
+    :members:
+    :undoc-members:
+    :show-inheritance:

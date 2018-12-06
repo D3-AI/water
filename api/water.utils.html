@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>water package &mdash; Water 0.1.0-dev documentation</title>
+  <title>water.utils module &mdash; Water 0.1.0-dev documentation</title>
   
 
   
@@ -28,8 +28,8 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="water.db module" href="water.db.html" />
-    <link rel="prev" title="Usage" href="../usage.html" /> 
+    <link rel="next" title="Contributing" href="../contributing.html" />
+    <link rel="prev" title="water.estimators module" href="water.estimators.html" /> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -86,11 +86,11 @@
 </ul>
 <p class="caption"><span class="caption-text">Advanced Usage</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">API Reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a><ul>
+<li class="toctree-l1 current"><a class="reference internal" href="water.html">API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="water.html#submodules">Submodules</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="water.db.html">water.db module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="water.estimators.html">water.estimators module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="water.utils.html">water.utils module</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">water.utils module</a></li>
 </ul>
 </li>
 </ul>
@@ -168,14 +168,16 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>water package</li>
+          <li><a href="water.html">water package</a> &raquo;</li>
+        
+      <li>water.utils module</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
             
-              <a href="https://github.com/D3-AI/water/blob/master/docs/api/water.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/D3-AI/water/blob/master/docs/api/water.utils.rst" class="fa fa-github"> Edit on GitHub</a>
             
           
         
@@ -189,19 +191,33 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-water">
-<span id="water-package"></span><h1>water package<a class="headerlink" href="#module-water" title="Permalink to this headline">¶</a></h1>
-<p>Top-level package for Water.</p>
-<div class="section" id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="water.db.html">water.db module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="water.estimators.html">water.estimators module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="water.utils.html">water.utils module</a></li>
-</ul>
-</div>
-</div>
+  <div class="section" id="module-water.utils">
+<span id="water-utils-module"></span><h1>water.utils module<a class="headerlink" href="#module-water.utils" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="water.utils.clone_pipeline">
+<code class="descclassname">water.utils.</code><code class="descname">clone_pipeline</code><span class="sig-paren">(</span><em>pipeline</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/water/utils.html#clone_pipeline"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#water.utils.clone_pipeline" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="water.utils.logging_setup">
+<code class="descclassname">water.utils.</code><code class="descname">logging_setup</code><span class="sig-paren">(</span><em>verbosity=1</em>, <em>logfile=None</em>, <em>logger_name=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/water/utils.html#logging_setup"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#water.utils.logging_setup" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="water.utils.remove_dots">
+<code class="descclassname">water.utils.</code><code class="descname">remove_dots</code><span class="sig-paren">(</span><em>document</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/water/utils.html#remove_dots"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#water.utils.remove_dots" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="water.utils.restore_dots">
+<code class="descclassname">water.utils.</code><code class="descname">restore_dots</code><span class="sig-paren">(</span><em>document</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/water/utils.html#restore_dots"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#water.utils.restore_dots" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="water.utils.walk">
+<code class="descclassname">water.utils.</code><code class="descname">walk</code><span class="sig-paren">(</span><em>document</em>, <em>transform</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/water/utils.html#walk"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#water.utils.walk" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </div>
 
 
@@ -212,10 +228,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="water.db.html" class="btn btn-neutral float-right" title="water.db module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../contributing.html" class="btn btn-neutral float-right" title="Contributing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../usage.html" class="btn btn-neutral" title="Usage" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="water.estimators.html" class="btn btn-neutral" title="water.estimators module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

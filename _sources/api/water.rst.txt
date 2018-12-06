@@ -11,5 +11,7 @@ Submodules
 
 .. toctree::
 
-   water.water
+   water.db
+   water.estimators
+   water.utils
 
