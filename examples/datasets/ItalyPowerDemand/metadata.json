@@ -1,0 +1,92 @@
+{
+    "name": "ItalyPowerDemand",
+    "tables": [
+        {
+            "path": "timeseries.csv",
+            "name": "timeseries",
+            "headers": true,
+            "fields": [
+                {
+                    "name": "timeseries_id",
+                    "type": "id",
+                    "subtype": "primary"
+                },
+                {
+                    "name": "timeseries_file",
+                    "type": "text"
+                }
+            ],
+            "primary_key": "timeseries_id"
+        },
+        {
+            "path": "demand.csv",
+            "name": "demand",
+            "headers": true,
+            "fields": [
+                {
+                    "name": "demand_id",
+                    "type": "id",
+                    "subtype": "primary"
+                },
+                {
+                    "name": "timeseries_id",
+                    "type": "id",
+                    "subtype": "foreign",
+                    "ref": {
+                        "table": "timeseries",
+                        "field": "timeseries_id"
+                    }
+                },
+                {
+                    "name": "cutoff_time",
+                    "type": "datetime",
+                    "subtype": "time_index",
+                    "properties": {
+                        "format": "%Y-%m-%d"
+                    }
+                },
+                {
+                    "name": "target",
+                    "type": "categorical",
+                    "subtype": "categorical"
+                }
+            ],
+            "primary_key": "demand_id"
+        },
+        {
+            "path": "data.csv",
+            "name": "data",
+            "headers": true,
+            "fields": [
+                {
+                    "name": "data_id",
+                    "type": "id",
+                    "subtype": "primary"
+                },
+                {
+                    "name": "timeseries_id",
+                    "type": "id",
+                    "subtype": "foreign",
+                    "ref": {
+                        "table": "timeseries",
+                        "field": "timeseries_id"
+                    }
+                },
+                {
+                    "name": "timestamp",
+                    "type": "datetime",
+                    "subtype": "time_index",
+                    "properties": {
+                        "format": "%Y-%m-%d"
+                    }
+                },
+                {
+                    "name": "value",
+                    "type": "number",
+                    "subtype": "float"
+                }
+            ],
+            "primary_key": "data_id"
+        }
+    ]
+}
