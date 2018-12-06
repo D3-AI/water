@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-"""Tests for `water` package."""
+"""Tests for `estimators` module."""
 import warnings
 from unittest import TestCase
 from unittest.mock import MagicMock, patch
@@ -10,13 +10,13 @@ import pandas as pd
 from sklearn.metrics import f1_score
 from sklearn.model_selection import StratifiedKFold
 
-from water.water import TimeSeriesClassifier
+from water.estimators import TimeSeriesClassifier
 
 warnings.filterwarnings('ignore', category=DeprecationWarning)
 
 
 class TestTimeSeriesClassifier(TestCase):
-    """Tests for `water` package."""
+    """Tests for `TimeSeriesClassifier`."""
 
     def test___init___default(self):
         """If cv_splits is passed a new cv object is created with the specified param."""
