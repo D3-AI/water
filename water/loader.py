@@ -69,7 +69,9 @@ class TimeSeriesLoader(object):
         data = {
             'entities': entities,
             'relationships': relationships,
-            'target_entity': self._target_table
+            'target_entity': self._target_table,
+            'target_column': self._target_column,
+            'dataset_name': self._metadata['name']
         }
 
         X = entities[self._target_table][0]
