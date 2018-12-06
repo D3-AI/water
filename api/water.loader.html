@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>water.db module &mdash; Water 0.1.0-dev documentation</title>
+  <title>water.loader module &mdash; Water 0.1.0-dev documentation</title>
   
 
   
@@ -28,8 +28,8 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="water.estimators module" href="water.estimators.html" />
-    <link rel="prev" title="water package" href="water.html" /> 
+    <link rel="next" title="water.utils module" href="water.utils.html" />
+    <link rel="prev" title="water.estimators module" href="water.estimators.html" /> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -88,9 +88,9 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="water.html">API Reference</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="water.html#submodules">Submodules</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">water.db module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="water.db.html">water.db module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="water.estimators.html">water.estimators module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="water.loader.html">water.loader module</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">water.loader module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="water.utils.html">water.utils module</a></li>
 </ul>
 </li>
@@ -171,14 +171,14 @@
         
           <li><a href="water.html">water package</a> &raquo;</li>
         
-      <li>water.db module</li>
+      <li>water.loader module</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
             
-              <a href="https://github.com/D3-AI/water/blob/master/docs/api/water.db.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/D3-AI/water/blob/master/docs/api/water.loader.rst" class="fa fa-github"> Edit on GitHub</a>
             
           
         
@@ -192,25 +192,15 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-water.db">
-<span id="water-db-module"></span><h1>water.db module<a class="headerlink" href="#module-water.db" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="module-water.loader">
+<span id="water-loader-module"></span><h1>water.loader module<a class="headerlink" href="#module-water.loader" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
-<dt id="water.db.MongoDB">
-<em class="property">class </em><code class="descclassname">water.db.</code><code class="descname">MongoDB</code><span class="sig-paren">(</span><em>database=None</em>, <em>config=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/water/db.html#MongoDB"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#water.db.MongoDB" title="Permalink to this definition">¶</a></dt>
+<dt id="water.loader.TimeSeriesLoader">
+<em class="property">class </em><code class="descclassname">water.loader.</code><code class="descname">TimeSeriesLoader</code><span class="sig-paren">(</span><em>dataset_path</em>, <em>target_table</em>, <em>target_column=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/water/loader.html#TimeSeriesLoader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#water.loader.TimeSeriesLoader" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="method">
-<dt id="water.db.MongoDB.insert_pipeline">
-<code class="descname">insert_pipeline</code><span class="sig-paren">(</span><em>candidate</em>, <em>score</em>, <em>dataset</em>, <em>table</em>, <em>column</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/water/db.html#MongoDB.insert_pipeline"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#water.db.MongoDB.insert_pipeline" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="water.db.MongoDB.insert_template">
-<code class="descname">insert_template</code><span class="sig-paren">(</span><em>template</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/water/db.html#MongoDB.insert_template"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#water.db.MongoDB.insert_template" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="water.db.MongoDB.load_template">
-<code class="descname">load_template</code><span class="sig-paren">(</span><em>template_name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/water/db.html#MongoDB.load_template"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#water.db.MongoDB.load_template" title="Permalink to this definition">¶</a></dt>
+<dt id="water.loader.TimeSeriesLoader.load">
+<code class="descname">load</code><span class="sig-paren">(</span><em>target=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/water/loader.html#TimeSeriesLoader.load"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#water.loader.TimeSeriesLoader.load" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -225,10 +215,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="water.estimators.html" class="btn btn-neutral float-right" title="water.estimators module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="water.utils.html" class="btn btn-neutral float-right" title="water.utils module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="water.html" class="btn btn-neutral" title="water package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="water.estimators.html" class="btn btn-neutral" title="water.estimators module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
