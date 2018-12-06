@@ -10,6 +10,12 @@ with open('HISTORY.md') as history_file:
     history = history_file.read()
 
 install_requires = [
+    'baytune==0.2.3',
+    'mlblocks==0.2.3',
+    'mlprimitives==0.1.3',
+    'scikit-learn==0.20.1',
+    'numpy==1.15.4',
+    'pymongo==3.7.2'
 ]
 
 setup_requires = [
@@ -55,7 +61,6 @@ setup(
         'License :: OSI Approved :: MIT License',
         'Natural Language :: English',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
@@ -73,7 +78,7 @@ setup(
     long_description_content_type='text/markdown',
     name='ml-water',
     packages=find_packages(include=['water', 'water.*']),
-    python_requires='>=3.4',
+    python_requires='>=3.5',
     setup_requires=setup_requires,
     test_suite='tests',
     tests_require=tests_require,
