@@ -23,7 +23,7 @@ class TestTimeSeriesClassifier(TestCase):
         target_column = 'label'
 
         timeseries = pd.DataFrame({
-                'timeseries_id': [0, 1, 2, 3, 4],
+            'timeseries_id': [0, 1, 2, 3, 4],
         })
 
         demand = pd.DataFrame(
