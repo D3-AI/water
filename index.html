@@ -75,7 +75,34 @@
             
             
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="readme.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="readme.html">Water</a></li>
+<li class="toctree-l1"><a class="reference internal" href="readme.html#overview">Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="readme.html#components">Components</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="readme.html#timeseriesestimator">TimeSeriesEstimator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="readme.html#timeseriesloader">TimeSeriesLoader</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="readme.html#concepts">Concepts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="readme.html#primitive">Primitive</a></li>
+<li class="toctree-l3"><a class="reference internal" href="readme.html#template">Template</a></li>
+<li class="toctree-l3"><a class="reference internal" href="readme.html#pipeline">Pipeline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="readme.html#dataset">Dataset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="readme.html#tuning">Tuning</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="readme.html#getting-started">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="readme.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="readme.html#usage-example">Usage Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="readme.html#load-and-explore-the-data">Load and explore the data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="readme.html#split-the-data">Split the data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="readme.html#finding-the-best-pipeline">Finding the best Pipeline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="readme.html#trying-new-templates">Trying new templates</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="installation.html#stable-release">Stable release</a></li>
 <li class="toctree-l2"><a class="reference internal" href="installation.html#from-source">From source</a></li>
@@ -193,16 +220,330 @@
 <a class="reference external image-reference" href="https://travis-ci.org/D3-AI/water"><img alt="Travis CI Shield" src="https://travis-ci.org/D3-AI/water.svg?branch=master" /></a>
 <div class="section" id="water">
 <h1>Water<a class="headerlink" href="#water" title="Permalink to this headline">¶</a></h1>
-<p>Water</p>
+<p>Machine learning for internet of things related to water systems.</p>
 <ul class="simple">
 <li>Documentation: <a class="reference external" href="https://D3-AI.github.io/water">https://D3-AI.github.io/water</a></li>
 <li>Homepage: <a class="reference external" href="https://github.com/D3-AI/water">https://github.com/D3-AI/water</a></li>
 </ul>
-<div class="toctree-wrapper compound">
+</div>
+<div class="section" id="overview">
+<h1>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h1>
+<p>The Water project is a collection of Machine Learning Automation tools and resources put together to assist
+in the development of Machine Learning Models able to make predictions based on Time Series data gathered from
+Internet of Things related to Water Distribution Systems.</p>
+<div class="section" id="components">
+<h2>Components<a class="headerlink" href="#components" title="Permalink to this headline">¶</a></h2>
+<p>These are the main components of the project.</p>
+<div class="section" id="timeseriesestimator">
+<h3>TimeSeriesEstimator<a class="headerlink" href="#timeseriesestimator" title="Permalink to this headline">¶</a></h3>
+<p>This class is the one in charge of learning from the data and making predictions by building
+<a class="reference external" href="https://hdi-project.github.io/MLBlocks">MLBlocks</a> and later on tuning them using
+<a class="reference external" href="https://hdi-project.github.io/BTB/">BTB</a></p>
+<p>This class comes in two flavours in the form of subclasses, the <strong>TimeSeriesClassifier</strong> and the
+<strong>TimeSeriesRegressor</strong>, to be used in the corresponding problem types.</p>
+</div>
+<div class="section" id="timeseriesloader">
+<h3>TimeSeriesLoader<a class="headerlink" href="#timeseriesloader" title="Permalink to this headline">¶</a></h3>
+<p>A class responsible for loading the time series data from CSV files, and return it in the
+format ready to be used by the <strong>TimeSeriesEstimator</strong>.</p>
+</div>
+</div>
+<div class="section" id="concepts">
+<h2>Concepts<a class="headerlink" href="#concepts" title="Permalink to this headline">¶</a></h2>
+<p>Before diving into the software usage, we briefly explain some concepts and terminology.</p>
+<div class="section" id="primitive">
+<h3>Primitive<a class="headerlink" href="#primitive" title="Permalink to this headline">¶</a></h3>
+<p>We call the smallest computational blocks used in a Machine Learning process
+<strong>primitives</strong>, which:</p>
+<ul class="simple">
+<li>Can be either classes or functions.</li>
+<li>Have some initialization arguments, which MLBlocks calls <code class="docutils literal notranslate"><span class="pre">init_params</span></code>.</li>
+<li>Have some tunable hyperparameters, which have types and a list or range of valid values.</li>
+</ul>
+</div>
+<div class="section" id="template">
+<h3>Template<a class="headerlink" href="#template" title="Permalink to this headline">¶</a></h3>
+<p>Primitives can be combined to form what we call <strong>Templates</strong>, which:</p>
+<ul class="simple">
+<li>Have a list of primitives.</li>
+<li>Have some initialization arguments, which correspond to the initialization arguments
+of their primitives.</li>
+<li>Have some tunable hyperparameters, which correspond to the tunable hyperparameters
+of their primitives.</li>
+</ul>
+</div>
+<div class="section" id="pipeline">
+<h3>Pipeline<a class="headerlink" href="#pipeline" title="Permalink to this headline">¶</a></h3>
+<p>Templates can be used to build <strong>Pipelines</strong> by taking and fixing a set of valid
+hyperparameters for a Template. Hence, Pipelines:</p>
+<ul class="simple">
+<li>Have a list of primitives, which corresponds to the list of primitives of their template.</li>
+<li>Have some initialization arguments, which correspond to the initialization arguments
+of their template.</li>
+<li>Have some hyperparameter values, which fall within the ranges of valid tunable
+hyperparameters of their template.</li>
+</ul>
+<p>A pipeline can be fitted and evaluated using the MLPipeline API in MLBlocks.</p>
+</div>
+<div class="section" id="dataset">
+<h3>Dataset<a class="headerlink" href="#dataset" title="Permalink to this headline">¶</a></h3>
+<p>In the Water project, a dataset is a folder that contains time series data and information about
+a Machine Learning problem in the form of CSV and JSON files.</p>
+<p>The expected contents of the <code class="docutils literal notranslate"><span class="pre">dataset</span></code> folder are:</p>
+<ul class="simple">
+<li>A <code class="docutils literal notranslate"><span class="pre">metadata.json</span></code> with information about all the tables found in the dataset. This file follows the <a class="reference external" href="https://github.com/HDI-Project/MetaData.json">Metadata.json schema</a> with three small modifications:<ul>
+<li>The root document has a <code class="docutils literal notranslate"><span class="pre">name</span></code> entry, with the name of the dataset.</li>
+<li>The foreign key columns are be of type <code class="docutils literal notranslate"><span class="pre">id</span></code> and subtype <code class="docutils literal notranslate"><span class="pre">foreign</span></code>.</li>
+<li>The <code class="docutils literal notranslate"><span class="pre">datetime</span></code> columns that are time indexes need to have the <code class="docutils literal notranslate"><span class="pre">time_index</span></code> subtype.</li>
+</ul>
+</li>
+<li>A CSV file containing the training samples with, at least, the following columns:<ul>
+<li>A unique index</li>
+<li>A foreign key to at least one timeseries table</li>
+<li>A time index that works as the cutoff time for the training example</li>
+<li>If the problem is supervised, a target column.</li>
+</ul>
+</li>
+</ul>
+<p>Then, for each type of timeseries that exist in the dataset, there will be:</p>
+<ul class="simple">
+<li>A CSV file containing the id of each timeseries and any additional information associated with it</li>
+<li>A CSV file containing the timeseries data with the following columns:<ul>
+<li>A unique index</li>
+<li>A foreign key to the timeseries table</li>
+<li>A time index</li>
+<li>At least a value column</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="tuning">
+<h3>Tuning<a class="headerlink" href="#tuning" title="Permalink to this headline">¶</a></h3>
+<p>We call tuning the process of, given a dataset and a template, find the pipeline derived from the
+given template that gets the best possible score on the given dataset.</p>
+<p>This process usually involves fitting and evaluating multiple pipelines with different hyperparameter
+values on the same data while using optimization algorithms to deduce which hyperparameters are more
+likely to get the best results in the next iterations.</p>
+<p>We call each one of these tries a <strong>tuning iteration</strong>.</p>
+</div>
+</div>
+</div>
+<div class="section" id="getting-started">
+<h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>The simplest and recommended way to install <strong>Water</strong> is using pip:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install ml-water
+</pre></div>
+</div>
+<p>For development, you can also clone the repository and install it from sources</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone git@github.com:D3-AI/water.git
+<span class="nb">cd</span> water
+make install-develop
+</pre></div>
+</div>
+</div>
+<div class="section" id="usage-example">
+<h2>Usage Example<a class="headerlink" href="#usage-example" title="Permalink to this headline">¶</a></h2>
+<p>In this example we will load some demo data using the <strong>TimeSeriesLoader</strong> and fetch it to the
+<strong>TimeSeriesClassifier</strong> for it to find the best possible pipeline, fit it using the given data
+and then make predictions from it.</p>
+<div class="section" id="load-and-explore-the-data">
+<h3>Load and explore the data<a class="headerlink" href="#load-and-explore-the-data" title="Permalink to this headline">¶</a></h3>
+<p>We first create a loader instance, passing the path to the dataset, the name of the column
+that we want to predict, and the name of the table where this column can be taken from.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">water.loader</span> <span class="kn">import</span> <span class="n">TimeSeriesLoader</span>
+
+<span class="n">loader</span> <span class="o">=</span> <span class="n">TimeSeriesLoader</span><span class="p">(</span>
+    <span class="n">dataset_path</span><span class="o">=</span><span class="s1">&#39;examples/datasets/ItalyPowerDemand&#39;</span><span class="p">,</span>
+    <span class="n">target_table</span><span class="o">=</span><span class="s1">&#39;demand&#39;</span><span class="p">,</span>
+    <span class="n">target_column</span><span class="o">=</span><span class="s1">&#39;target&#39;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Then we call the <code class="docutils literal notranslate"><span class="pre">loader.load</span></code> method, which will return three elements:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">X</span></code>: The contents of the target table, where the training examples can be found, without the target column.</li>
+<li><code class="docutils literal notranslate"><span class="pre">y</span></code>: The target column, as extracted from the target table.</li>
+<li><code class="docutils literal notranslate"><span class="pre">data</span></code>: A dictionary containing the additional elements that the Pipeline will need to run, including the actual time series data.</li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+<span class="n">X</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+<div>
+<table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>demand_id</th>
+      <th>timeseries_id</th>
+      <th>cutoff_time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>0</td>
+      <td>2010-01-25</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>1</td>
+      <td>2010-01-25</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>2</td>
+      <td>2010-01-25</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3</td>
+      <td>3</td>
+      <td>2010-01-25</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>4</td>
+      <td>4</td>
+      <td>2010-01-25</td>
+    </tr>
+  </tbody>
+</table>
+</div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">y</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>0    1
+1    1
+2    2
+3    2
+4    1
+Name: target, dtype: int64
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>dict_keys([&#39;entities&#39;, &#39;relationships&#39;, &#39;target_entity&#39;, &#39;target_column&#39;, &#39;dataset_name&#39;])
+</pre></div>
+</div>
+</div>
+<div class="section" id="split-the-data">
+<h3>Split the data<a class="headerlink" href="#split-the-data" title="Permalink to this headline">¶</a></h3>
+<p>If we want to split the data in train and test subsets, we can do so by splitting the <code class="docutils literal notranslate"><span class="pre">X</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> variables.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="finding-the-best-pipeline">
+<h3>Finding the best Pipeline<a class="headerlink" href="#finding-the-best-pipeline" title="Permalink to this headline">¶</a></h3>
+<p>Once we have loaded the data, we create a <strong>TimeSeriesClassifier</strong> instance and call its <code class="docutils literal notranslate"><span class="pre">tune</span></code> method to
+find the best possible pipeline for our data.</p>
+<p>We start by importing the <code class="docutils literal notranslate"><span class="pre">TimeSeriesClassifier</span></code> and creating an instance.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">water.estimators</span> <span class="kn">import</span> <span class="n">TimeSeriesClassifier</span>
+
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">DeprecationWarning</span><span class="p">)</span>
+
+<span class="n">tsc</span> <span class="o">=</span> <span class="n">TimeSeriesClassifier</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>We then pass the <code class="docutils literal notranslate"><span class="pre">X</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> partitions and the <code class="docutils literal notranslate"><span class="pre">data</span></code> dictionary, along with the number of tuning iterations
+that we want to perform to the <code class="docutils literal notranslate"><span class="pre">tune</span></code> method, which will run the indicated number of iterations
+trying to figure out the best possible hyperparameters.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tsc</span><span class="o">.</span><span class="n">tune</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">iterations</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>After the tuning process has finished, the hyperparameters have been already set in the classifier.</p>
+<p>We can see the found hyperparameters by calling the <code class="docutils literal notranslate"><span class="pre">get_hyperparameters</span></code> method</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tsc</span><span class="o">.</span><span class="n">get_hyperparameters</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>{&#39;mlprimitives.preprocessing.ClassEncoder#1&#39;: {},
+ &#39;featuretools.dfs#1&#39;: {&#39;encode&#39;: True,
+  &#39;max_depth&#39;: 2,
+  &#39;remove_low_information&#39;: False},
+ &#39;sklearn.preprocessing.Imputer#1&#39;: {&#39;missing_values&#39;: &#39;NaN&#39;,
+  &#39;axis&#39;: 0,
+  &#39;copy&#39;: True,
+  &#39;strategy&#39;: &#39;mean&#39;},
+ &#39;xgboost.XGBClassifier#1&#39;: {&#39;n_jobs&#39;: -1,
+  &#39;n_estimators&#39;: 409,
+  &#39;max_depth&#39;: 8,
+  &#39;learning_rate&#39;: 0.45727735286952875,
+  &#39;gamma&#39;: 0.7661016859076536,
+  &#39;min_child_weight&#39;: 2},
+ &#39;mlprimitives.preprocessing.ClassDecoder#1&#39;: {}}
+</pre></div>
+</div>
+<p>as well as the obtained cross validation score by looking at the <code class="docutils literal notranslate"><span class="pre">score</span></code> attribute of the <code class="docutils literal notranslate"><span class="pre">tsc</span></code> object</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tsc</span><span class="o">.</span><span class="n">score</span>
+</pre></div>
+</div>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>0.6212121212121213
+</pre></div>
+</div>
+<p>Once we are satisfied with the obtained cross validation score, we can proceed to call
+the <code class="docutils literal notranslate"><span class="pre">fit</span></code> method passing again the same data elements.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tsc</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>After this, we are ready to make predictions on new data</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">predictions</span> <span class="o">=</span> <span class="n">tsc</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+<span class="n">predictions</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>array([2, 1, 2, 2, 2])
+</pre></div>
+</div>
+</div>
+<div class="section" id="trying-new-templates">
+<h3>Trying new templates<a class="headerlink" href="#trying-new-templates" title="Permalink to this headline">¶</a></h3>
+<p>The <strong>TimeSeriesClassifier</strong> and <strong>TimeSeriesRegressor</strong> have a default template for each problem.</p>
+<p>This template can be overriden by passing a new template dictionary when the instance is created.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">template</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;primitives&#39;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s1">&#39;featuretools.dfs&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;sklearn.preprocessing.Imputer&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;sklearn.preprocessing.StandardScaler&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;sklearn.ensemble.RandomForestClassifier&#39;</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="s1">&#39;init_params&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;featuretools.dfs#1&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;encode&#39;</span><span class="p">:</span> <span class="bp">True</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">tsc</span> <span class="o">=</span> <span class="n">TimeSeriesClassifier</span><span class="p">(</span><span class="n">template</span><span class="o">=</span><span class="n">template</span><span class="p">)</span>
+<span class="n">tsc</span><span class="o">.</span><span class="n">tune</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">iterations</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">tsc</span><span class="o">.</span><span class="n">score</span>
+</pre></div>
+</div>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>0.5404040404040403
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tsc</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+<span class="n">predictions</span> <span class="o">=</span> <span class="n">tsc</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+<span class="n">predictions</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>array([1, 1, 1, 1, 1])
+</pre></div>
 </div>
 <div class="toctree-wrapper compound">
 </div>
 <div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="indices-and-tables">

@@ -74,7 +74,34 @@
             
             
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../readme.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../readme.html">Water</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../readme.html#overview">Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../readme.html#components">Components</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../readme.html#timeseriesestimator">TimeSeriesEstimator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../readme.html#timeseriesloader">TimeSeriesLoader</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../readme.html#concepts">Concepts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../readme.html#primitive">Primitive</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../readme.html#template">Template</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../readme.html#pipeline">Pipeline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../readme.html#dataset">Dataset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../readme.html#tuning">Tuning</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../readme.html#getting-started">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../readme.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../readme.html#usage-example">Usage Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../readme.html#load-and-explore-the-data">Load and explore the data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../readme.html#split-the-data">Split the data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../readme.html#finding-the-best-pipeline">Finding the best Pipeline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../readme.html#trying-new-templates">Trying new templates</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../installation.html#stable-release">Stable release</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../installation.html#from-source">From source</a></li>
@@ -207,6 +234,7 @@
 
     <span class="n">template</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">fitted</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">score</span> <span class="o">=</span> <span class="kc">None</span>
 
     <span class="n">_cv_class</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">_score</span> <span class="o">=</span> <span class="kc">None</span>
@@ -264,9 +292,9 @@
 
     <span class="k">def</span> <span class="nf">_is_better</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">score</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cost</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">score</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_best_score</span>
+            <span class="k">return</span> <span class="n">score</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">score</span>
 
-        <span class="k">return</span> <span class="n">score</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_best_score</span>
+        <span class="k">return</span> <span class="n">score</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">score</span>
 
     <span class="k">def</span> <span class="nf">_get_tunables</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">tunables</span> <span class="o">=</span> <span class="p">[]</span>
@@ -343,14 +371,14 @@
 
         <span class="c1"># Inform the tuner about the score that the default hyperparmeters obtained</span>
         <span class="n">param_tuples</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_to_tuples</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_pipeline</span><span class="o">.</span><span class="n">get_hyperparameters</span><span class="p">(),</span> <span class="n">tunable_keys</span><span class="p">)</span>
-        <span class="n">tuner</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">param_tuples</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_best_score</span><span class="p">)</span>
+        <span class="n">tuner</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">param_tuples</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">score</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">tuner</span>
 
 <div class="viewcode-block" id="TimeSeriesEstimator.tune"><a class="viewcode-back" href="../../api/water.estimators.html#water.estimators.TimeSeriesEstimator.tune">[docs]</a>    <span class="k">def</span> <span class="nf">tune</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">iterations</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tuner</span><span class="p">:</span>
             <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Scoring the default pipeline&#39;</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_best_score</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_score_pipeline</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_pipeline</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">score</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_score_pipeline</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_pipeline</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_tuner</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_tuner</span><span class="p">()</span>
 
         <span class="n">dataset</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;dataset_name&#39;</span><span class="p">]</span>
@@ -375,7 +403,7 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">_db</span><span class="o">.</span><span class="n">insert_pipeline</span><span class="p">(</span><span class="n">candidate</span><span class="p">,</span> <span class="n">score</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">table</span><span class="p">,</span> <span class="n">column</span><span class="p">)</span>
 
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_better</span><span class="p">(</span><span class="n">score</span><span class="p">):</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_best_score</span> <span class="o">=</span> <span class="n">score</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">score</span> <span class="o">=</span> <span class="n">score</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">set_hyperparameters</span><span class="p">(</span><span class="n">param_dicts</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="TimeSeriesEstimator.fit"><a class="viewcode-back" href="../../api/water.estimators.html#water.estimators.TimeSeriesEstimator.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
