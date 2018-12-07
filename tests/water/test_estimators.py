@@ -130,12 +130,12 @@ class TestTimeSeriesClassifier(TestCase):
         assert instance.fitted is False
 
     def test__is_better(self):
-        """_is_better only return true if the argument is greater than the _best_score."""
+        """_is_better only return true if the argument is greater than the self.score."""
         # Setup
         scorer = f1_score
         cv = StratifiedKFold(n_splits=5, shuffle=True)
         instance = TimeSeriesClassifier(cv=cv, scorer=scorer)
-        instance._best_score = 1
+        instance.score = 1
 
         # Run / Check
         assert not instance._is_better(0)
@@ -158,12 +158,12 @@ class TestTimeSeriesClassifier(TestCase):
         gp_mock.return_value = gp_mock_instance
 
         expected_propose_calls = [((1, ), ), ((1, ), )]
-        expected_best_score = 0.0
+        expected_score = 0.0
         param_tuples = instance._to_tuples(instance._pipeline.get_hyperparameters(), tunable_keys)
         expected_add_calls = [
-            ((param_tuples, expected_best_score), ),
-            ((gp_mock_instance.propose.return_value, expected_best_score), ),
-            ((gp_mock_instance.propose.return_value, expected_best_score), ),
+            ((param_tuples, expected_score), ),
+            ((gp_mock_instance.propose.return_value, expected_score), ),
+            ((gp_mock_instance.propose.return_value, expected_score), ),
         ]
 
         # Run
