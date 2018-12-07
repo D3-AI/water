@@ -102,3 +102,4 @@ ENV/
 .mypy_cache/
 
 examples/notebooks/data
+README.ipynb

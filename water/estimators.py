@@ -20,6 +20,7 @@ class TimeSeriesEstimator(object):
 
     template = None
     fitted = False
+    score = None
 
     _cv_class = None
     _score = None
@@ -77,9 +78,9 @@ class TimeSeriesEstimator(object):
 
     def _is_better(self, score):
         if self._cost:
-            return score < self._best_score
+            return score < self.score
 
-        return score > self._best_score
+        return score > self.score
 
     def _get_tunables(self):
         tunables = []
@@ -156,14 +157,14 @@ class TimeSeriesEstimator(object):
 
         # Inform the tuner about the score that the default hyperparmeters obtained
         param_tuples = self._to_tuples(self._pipeline.get_hyperparameters(), tunable_keys)
-        tuner.add(param_tuples, self._best_score)
+        tuner.add(param_tuples, self.score)
 
         return tuner
 
     def tune(self, X, y, data, iterations=10):
         if not self._tuner:
             LOGGER.info('Scoring the default pipeline')
-            self._best_score = self._score_pipeline(self._pipeline, X, y, data)
+            self.score = self._score_pipeline(self._pipeline, X, y, data)
             self._tuner = self._get_tuner()
 
         dataset = data['dataset_name']
@@ -188,7 +189,7 @@ class TimeSeriesEstimator(object):
                 self._db.insert_pipeline(candidate, score, dataset, table, column)
 
             if self._is_better(score):
-                self._best_score = score
+                self.score = score
                 self.set_hyperparameters(param_dicts)
 
     def fit(self, X, y, data):
