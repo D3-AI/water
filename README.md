@@ -3,35 +3,34 @@
 
 # Water
 
-Machine learning for internet of things related to water systems.
+<p align="center"> 
+<i>Machine learning for internet of things related to water systems.  </I>
+</p>
+
+
+
+
+<p align="center"> 
+<i>A collaborative open source project between Data to AI Lab at MIT and Xylem Inc. </I>
+</p>
+
+
 
 - Documentation: https://D3-AI.github.io/water
 - Homepage: https://github.com/D3-AI/water
 
 # Overview
 
-The Water project is a collection of Machine Learning Automation tools and resources put together to assist
-in the development of Machine Learning Models able to make predictions based on Time Series data gathered from
-Internet of Things related to Water Distribution Systems.
+The Water project is a collection of end-to-end solutions for machine learning tasks commonly found in monitoring water distribution and delivery networks. Most tasks utilize sensor data emanating from monitoring systems. We utilize the foundational innovations developed for automation of machine Learning at Data to AI Lab at MIT. This project is developed in close collaboration with Xylem Inc. 
 
-## Components
-
-These are the main components of the project.
-
-### TimeSeriesEstimator
-
-This class is the one in charge of learning from the data and making predictions by building
-[MLBlocks](https://hdi-project.github.io/MLBlocks) and later on tuning them using
-[BTB](https://hdi-project.github.io/BTB/)
-
-This class comes in two flavours in the form of subclasses, the **TimeSeriesClassifier** and the
-**TimeSeriesRegressor**, to be used in the corresponding problem types.
-
-### TimeSeriesLoader
-
-A class responsible for loading the time series data from CSV files, and return it in the
-format ready to be used by the **TimeSeriesEstimator**.
-
+The salient aspects of this customized project are:
+* A set of ready to use, well tested pipelines for different machine learning tasks. These are vetted through testing across multiple publicly available datasets for the same task. 
+* An easy interface to specify the task, pipeline, and generate results and summarize them. 
+* A production ready, deployable pipeline. 
+* An easy interface to ``tune`` pipelines using Bayesian Tuning and Bandits library. 
+* A community oriented infrastructure to incorporate new pipelines. 
+* A robust continuous integration and testing infrastructure. 
+* A ``learning database`` recording all past outcomes --> tasks, pipelines, outcomes. 
 
 ## Concepts
 
@@ -69,9 +68,31 @@ hyperparameters for a Template. Hence, Pipelines:
 
 A pipeline can be fitted and evaluated using the MLPipeline API in MLBlocks.
 
-### Dataset
 
-In the Water project, a dataset is a folder that contains time series data and information about
+## Current tasks and pipelines
+
+In our current phase, we are addressing two tasks - time series classification and time series regression. To provide solutions for these two tasks we have two components. 
+
+### TimeSeriesEstimator
+
+This class is the one in charge of learning from the data and making predictions by building
+[MLBlocks](https://hdi-project.github.io/MLBlocks) and later on tuning them using
+[BTB](https://hdi-project.github.io/BTB/)
+
+This class comes in two flavours in the form of subclasses, the **TimeSeriesClassifier** and the
+**TimeSeriesRegressor**, to be used in the corresponding problem types.
+
+### TimeSeriesLoader
+
+A class responsible for loading the time series data from CSV files, and return it in the
+format ready to be used by the **TimeSeriesEstimator**.
+
+
+
+
+### Time series dataset
+
+A dataset is a folder that contains time series data and information about
 a Machine Learning problem in the form of CSV and JSON files.
 
 The expected contents of the `dataset` folder are:
