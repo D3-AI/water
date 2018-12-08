@@ -77,16 +77,16 @@
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="readme.html">Water</a></li>
 <li class="toctree-l1"><a class="reference internal" href="readme.html#overview">Overview</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="readme.html#components">Components</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="readme.html#timeseriesestimator">TimeSeriesEstimator</a></li>
-<li class="toctree-l3"><a class="reference internal" href="readme.html#timeseriesloader">TimeSeriesLoader</a></li>
-</ul>
-</li>
 <li class="toctree-l2"><a class="reference internal" href="readme.html#concepts">Concepts</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="readme.html#primitive">Primitive</a></li>
 <li class="toctree-l3"><a class="reference internal" href="readme.html#template">Template</a></li>
 <li class="toctree-l3"><a class="reference internal" href="readme.html#pipeline">Pipeline</a></li>
-<li class="toctree-l3"><a class="reference internal" href="readme.html#dataset">Dataset</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="readme.html#current-tasks-and-pipelines">Current tasks and pipelines</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="readme.html#timeseriesestimator">TimeSeriesEstimator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="readme.html#timeseriesloader">TimeSeriesLoader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="readme.html#time-series-dataset">Time series dataset</a></li>
 <li class="toctree-l3"><a class="reference internal" href="readme.html#tuning">Tuning</a></li>
 </ul>
 </li>
@@ -220,34 +220,28 @@
 <a class="reference external image-reference" href="https://travis-ci.org/D3-AI/water"><img alt="Travis CI Shield" src="https://travis-ci.org/D3-AI/water.svg?branch=master" /></a>
 <div class="section" id="water">
 <h1>Water<a class="headerlink" href="#water" title="Permalink to this headline">¶</a></h1>
-<p>Machine learning for internet of things related to water systems.</p>
-<ul class="simple">
+<p align="center">
+<i>Machine learning for internet of things related to water systems.  </I>
+</p><p align="center">
+<i>A collaborative open source project between Data to AI Lab at MIT and Xylem Inc. </I>
+</p><ul class="simple">
 <li>Documentation: <a class="reference external" href="https://D3-AI.github.io/water">https://D3-AI.github.io/water</a></li>
 <li>Homepage: <a class="reference external" href="https://github.com/D3-AI/water">https://github.com/D3-AI/water</a></li>
 </ul>
 </div>
 <div class="section" id="overview">
 <h1>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h1>
-<p>The Water project is a collection of Machine Learning Automation tools and resources put together to assist
-in the development of Machine Learning Models able to make predictions based on Time Series data gathered from
-Internet of Things related to Water Distribution Systems.</p>
-<div class="section" id="components">
-<h2>Components<a class="headerlink" href="#components" title="Permalink to this headline">¶</a></h2>
-<p>These are the main components of the project.</p>
-<div class="section" id="timeseriesestimator">
-<h3>TimeSeriesEstimator<a class="headerlink" href="#timeseriesestimator" title="Permalink to this headline">¶</a></h3>
-<p>This class is the one in charge of learning from the data and making predictions by building
-<a class="reference external" href="https://hdi-project.github.io/MLBlocks">MLBlocks</a> and later on tuning them using
-<a class="reference external" href="https://hdi-project.github.io/BTB/">BTB</a></p>
-<p>This class comes in two flavours in the form of subclasses, the <strong>TimeSeriesClassifier</strong> and the
-<strong>TimeSeriesRegressor</strong>, to be used in the corresponding problem types.</p>
-</div>
-<div class="section" id="timeseriesloader">
-<h3>TimeSeriesLoader<a class="headerlink" href="#timeseriesloader" title="Permalink to this headline">¶</a></h3>
-<p>A class responsible for loading the time series data from CSV files, and return it in the
-format ready to be used by the <strong>TimeSeriesEstimator</strong>.</p>
-</div>
-</div>
+<p>The Water project is a collection of end-to-end solutions for machine learning tasks commonly found in monitoring water distribution and delivery networks. Most tasks utilize sensor data emanating from monitoring systems. We utilize the foundational innovations developed for automation of machine Learning at Data to AI Lab at MIT. This project is developed in close collaboration with Xylem Inc.</p>
+<p>The salient aspects of this customized project are:</p>
+<ul class="simple">
+<li>A set of ready to use, well tested pipelines for different machine learning tasks. These are vetted through testing across multiple publicly available datasets for the same task.</li>
+<li>An easy interface to specify the task, pipeline, and generate results and summarize them.</li>
+<li>A production ready, deployable pipeline.</li>
+<li>An easy interface to <code class="docutils literal notranslate"><span class="pre">tune</span></code> pipelines using Bayesian Tuning and Bandits library.</li>
+<li>A community oriented infrastructure to incorporate new pipelines.</li>
+<li>A robust continuous integration and testing infrastructure.</li>
+<li>A <code class="docutils literal notranslate"><span class="pre">learning</span> <span class="pre">database</span></code> recording all past outcomes –&gt; tasks, pipelines, outcomes.</li>
+</ul>
 <div class="section" id="concepts">
 <h2>Concepts<a class="headerlink" href="#concepts" title="Permalink to this headline">¶</a></h2>
 <p>Before diving into the software usage, we briefly explain some concepts and terminology.</p>
@@ -285,9 +279,26 @@ hyperparameters of their template.</li>
 </ul>
 <p>A pipeline can be fitted and evaluated using the MLPipeline API in MLBlocks.</p>
 </div>
-<div class="section" id="dataset">
-<h3>Dataset<a class="headerlink" href="#dataset" title="Permalink to this headline">¶</a></h3>
-<p>In the Water project, a dataset is a folder that contains time series data and information about
+</div>
+<div class="section" id="current-tasks-and-pipelines">
+<h2>Current tasks and pipelines<a class="headerlink" href="#current-tasks-and-pipelines" title="Permalink to this headline">¶</a></h2>
+<p>In our current phase, we are addressing two tasks - time series classification and time series regression. To provide solutions for these two tasks we have two components.</p>
+<div class="section" id="timeseriesestimator">
+<h3>TimeSeriesEstimator<a class="headerlink" href="#timeseriesestimator" title="Permalink to this headline">¶</a></h3>
+<p>This class is the one in charge of learning from the data and making predictions by building
+<a class="reference external" href="https://hdi-project.github.io/MLBlocks">MLBlocks</a> and later on tuning them using
+<a class="reference external" href="https://hdi-project.github.io/BTB/">BTB</a></p>
+<p>This class comes in two flavours in the form of subclasses, the <strong>TimeSeriesClassifier</strong> and the
+<strong>TimeSeriesRegressor</strong>, to be used in the corresponding problem types.</p>
+</div>
+<div class="section" id="timeseriesloader">
+<h3>TimeSeriesLoader<a class="headerlink" href="#timeseriesloader" title="Permalink to this headline">¶</a></h3>
+<p>A class responsible for loading the time series data from CSV files, and return it in the
+format ready to be used by the <strong>TimeSeriesEstimator</strong>.</p>
+</div>
+<div class="section" id="time-series-dataset">
+<h3>Time series dataset<a class="headerlink" href="#time-series-dataset" title="Permalink to this headline">¶</a></h3>
+<p>A dataset is a folder that contains time series data and information about
 a Machine Learning problem in the form of CSV and JSON files.</p>
 <p>The expected contents of the <code class="docutils literal notranslate"><span class="pre">dataset</span></code> folder are:</p>
 <ul class="simple">
