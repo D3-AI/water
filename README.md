@@ -1,21 +1,18 @@
+<p align="left">
+<img width=15% src="https://dai.lids.mit.edu/wp-content/uploads/2018/06/Logo_DAI_highres.png" alt=“DaiLab” /><a href="https://www.xylem.com/" target="_blank"><img width=15% src="https://upload.wikimedia.org/wikipedia/en/thumb/2/2d/Xylem_Logo.svg/1920px-Xylem_Logo.svg.png" alt="XylemLogo"/></a>
+<br/>
+<i>A collaborative open source project between Data to AI Lab at MIT and Xylem Inc..</i>
+</p>
+
 [![PyPI Shield](https://img.shields.io/pypi/v/water.svg)](https://pypi.python.org/pypi/ml-water)
 [![Travis CI Shield](https://travis-ci.org/D3-AI/water.svg?branch=master)](https://travis-ci.org/D3-AI/water)
+[![Downloads](https://pepy.tech/badge/ml-water)](https://pepy.tech/project/ml-water)
 
 # Water
 
-<p align="center"> 
-<i>Machine learning for internet of things related to water systems.  </I>
-</p>
+Machine learning for internet of things related to water systems.
 
-
-
-
-<p align="center"> 
-<i>A collaborative open source project between Data to AI Lab at MIT and Xylem Inc. </I>
-</p>
-
-
-
+- Free software: MIT license
 - Documentation: https://D3-AI.github.io/water
 - Homepage: https://github.com/D3-AI/water
 
@@ -408,3 +405,7 @@ predictions[0:5]
     array([1, 1, 1, 1, 1])
 
 
+## What's next?
+￼ ￼
+￼For more details about **water** and all its possibilities and features, please check the
+￼[project documentation site](https://D3-AI.github.io/water/)!
