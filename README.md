@@ -6,6 +6,7 @@
 
 [![PyPI Shield](https://img.shields.io/pypi/v/water.svg)](https://pypi.python.org/pypi/ml-water)
 [![Travis CI Shield](https://travis-ci.org/D3-AI/water.svg?branch=master)](https://travis-ci.org/D3-AI/water)
+[![Downloads](https://pepy.tech/badge/ml-water)](https://pepy.tech/project/ml-water)
 
 # Water
 
