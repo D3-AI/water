@@ -17,33 +17,35 @@
   
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Water" href="readme.html" /> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -101,6 +103,7 @@
 <li class="toctree-l3"><a class="reference internal" href="readme.html#trying-new-templates">Trying new templates</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="readme.html#what-s-next">What’s next?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
@@ -216,17 +219,20 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <a class="reference external image-reference" href="https://pypi.python.org/pypi/ml-water"><img alt="PyPI Shield" src="https://img.shields.io/pypi/v/water.svg" /></a>
+  <p align="left">
+<img width=15% src="https://dai.lids.mit.edu/wp-content/uploads/2018/06/Logo_DAI_highres.png" alt=“DaiLab” /><a href="https://www.xylem.com/" target="_blank"><img width=15% src="https://upload.wikimedia.org/wikipedia/en/thumb/2/2d/Xylem_Logo.svg/1920px-Xylem_Logo.svg.png" alt="XylemLogo"/></a>
+<br/>
+<i>A collaborative open source project between Data to AI Lab at MIT and Xylem Inc..</i>
+</p><a class="reference external image-reference" href="https://pypi.python.org/pypi/ml-water"><img alt="PyPI Shield" src="https://img.shields.io/pypi/v/water.svg" /></a>
 <a class="reference external image-reference" href="https://travis-ci.org/D3-AI/water"><img alt="Travis CI Shield" src="https://travis-ci.org/D3-AI/water.svg?branch=master" /></a>
+<a class="reference external image-reference" href="https://pepy.tech/project/ml-water"><img alt="Downloads" src="https://pepy.tech/badge/ml-water" /></a>
 <div class="section" id="water">
 <h1>Water<a class="headerlink" href="#water" title="Permalink to this headline">¶</a></h1>
-<p align="center">
-<i>Machine learning for internet of things related to water systems.  </I>
-</p><p align="center">
-<i>A collaborative open source project between Data to AI Lab at MIT and Xylem Inc. </I>
-</p><ul class="simple">
-<li>Documentation: <a class="reference external" href="https://D3-AI.github.io/water">https://D3-AI.github.io/water</a></li>
-<li>Homepage: <a class="reference external" href="https://github.com/D3-AI/water">https://github.com/D3-AI/water</a></li>
+<p>Machine learning for internet of things related to water systems.</p>
+<ul class="simple">
+<li><p>Free software: MIT license</p></li>
+<li><p>Documentation: <a class="reference external" href="https://D3-AI.github.io/water">https://D3-AI.github.io/water</a></p></li>
+<li><p>Homepage: <a class="reference external" href="https://github.com/D3-AI/water">https://github.com/D3-AI/water</a></p></li>
 </ul>
 </div>
 <div class="section" id="overview">
@@ -234,13 +240,13 @@
 <p>The Water project is a collection of end-to-end solutions for machine learning tasks commonly found in monitoring water distribution and delivery networks. Most tasks utilize sensor data emanating from monitoring systems. We utilize the foundational innovations developed for automation of machine Learning at Data to AI Lab at MIT. This project is developed in close collaboration with Xylem Inc.</p>
 <p>The salient aspects of this customized project are:</p>
 <ul class="simple">
-<li>A set of ready to use, well tested pipelines for different machine learning tasks. These are vetted through testing across multiple publicly available datasets for the same task.</li>
-<li>An easy interface to specify the task, pipeline, and generate results and summarize them.</li>
-<li>A production ready, deployable pipeline.</li>
-<li>An easy interface to <code class="docutils literal notranslate"><span class="pre">tune</span></code> pipelines using Bayesian Tuning and Bandits library.</li>
-<li>A community oriented infrastructure to incorporate new pipelines.</li>
-<li>A robust continuous integration and testing infrastructure.</li>
-<li>A <code class="docutils literal notranslate"><span class="pre">learning</span> <span class="pre">database</span></code> recording all past outcomes –&gt; tasks, pipelines, outcomes.</li>
+<li><p>A set of ready to use, well tested pipelines for different machine learning tasks. These are vetted through testing across multiple publicly available datasets for the same task.</p></li>
+<li><p>An easy interface to specify the task, pipeline, and generate results and summarize them.</p></li>
+<li><p>A production ready, deployable pipeline.</p></li>
+<li><p>An easy interface to <code class="docutils literal notranslate"><span class="pre">tune</span></code> pipelines using Bayesian Tuning and Bandits library.</p></li>
+<li><p>A community oriented infrastructure to incorporate new pipelines.</p></li>
+<li><p>A robust continuous integration and testing infrastructure.</p></li>
+<li><p>A <code class="docutils literal notranslate"><span class="pre">learning</span> <span class="pre">database</span></code> recording all past outcomes –&gt; tasks, pipelines, outcomes.</p></li>
 </ul>
 <div class="section" id="concepts">
 <h2>Concepts<a class="headerlink" href="#concepts" title="Permalink to this headline">¶</a></h2>
@@ -250,20 +256,20 @@
 <p>We call the smallest computational blocks used in a Machine Learning process
 <strong>primitives</strong>, which:</p>
 <ul class="simple">
-<li>Can be either classes or functions.</li>
-<li>Have some initialization arguments, which MLBlocks calls <code class="docutils literal notranslate"><span class="pre">init_params</span></code>.</li>
-<li>Have some tunable hyperparameters, which have types and a list or range of valid values.</li>
+<li><p>Can be either classes or functions.</p></li>
+<li><p>Have some initialization arguments, which MLBlocks calls <code class="docutils literal notranslate"><span class="pre">init_params</span></code>.</p></li>
+<li><p>Have some tunable hyperparameters, which have types and a list or range of valid values.</p></li>
 </ul>
 </div>
 <div class="section" id="template">
 <h3>Template<a class="headerlink" href="#template" title="Permalink to this headline">¶</a></h3>
 <p>Primitives can be combined to form what we call <strong>Templates</strong>, which:</p>
 <ul class="simple">
-<li>Have a list of primitives.</li>
-<li>Have some initialization arguments, which correspond to the initialization arguments
-of their primitives.</li>
-<li>Have some tunable hyperparameters, which correspond to the tunable hyperparameters
-of their primitives.</li>
+<li><p>Have a list of primitives.</p></li>
+<li><p>Have some initialization arguments, which correspond to the initialization arguments
+of their primitives.</p></li>
+<li><p>Have some tunable hyperparameters, which correspond to the tunable hyperparameters
+of their primitives.</p></li>
 </ul>
 </div>
 <div class="section" id="pipeline">
@@ -271,11 +277,11 @@ of their primitives.</li>
 <p>Templates can be used to build <strong>Pipelines</strong> by taking and fixing a set of valid
 hyperparameters for a Template. Hence, Pipelines:</p>
 <ul class="simple">
-<li>Have a list of primitives, which corresponds to the list of primitives of their template.</li>
-<li>Have some initialization arguments, which correspond to the initialization arguments
-of their template.</li>
-<li>Have some hyperparameter values, which fall within the ranges of valid tunable
-hyperparameters of their template.</li>
+<li><p>Have a list of primitives, which corresponds to the list of primitives of their template.</p></li>
+<li><p>Have some initialization arguments, which correspond to the initialization arguments
+of their template.</p></li>
+<li><p>Have some hyperparameter values, which fall within the ranges of valid tunable
+hyperparameters of their template.</p></li>
 </ul>
 <p>A pipeline can be fitted and evaluated using the MLPipeline API in MLBlocks.</p>
 </div>
@@ -302,28 +308,31 @@ format ready to be used by the <strong>TimeSeriesEstimator</strong>.</p>
 a Machine Learning problem in the form of CSV and JSON files.</p>
 <p>The expected contents of the <code class="docutils literal notranslate"><span class="pre">dataset</span></code> folder are:</p>
 <ul class="simple">
-<li>A <code class="docutils literal notranslate"><span class="pre">metadata.json</span></code> with information about all the tables found in the dataset. This file follows the <a class="reference external" href="https://github.com/HDI-Project/MetaData.json">Metadata.json schema</a> with three small modifications:<ul>
-<li>The root document has a <code class="docutils literal notranslate"><span class="pre">name</span></code> entry, with the name of the dataset.</li>
-<li>The foreign key columns are be of type <code class="docutils literal notranslate"><span class="pre">id</span></code> and subtype <code class="docutils literal notranslate"><span class="pre">foreign</span></code>.</li>
-<li>The <code class="docutils literal notranslate"><span class="pre">datetime</span></code> columns that are time indexes need to have the <code class="docutils literal notranslate"><span class="pre">time_index</span></code> subtype.</li>
+<li><p>A <code class="docutils literal notranslate"><span class="pre">metadata.json</span></code> with information about all the tables found in the dataset. This file follows the <a class="reference external" href="https://github.com/HDI-Project/MetaData.json">Metadata.json schema</a> with three small modifications:</p>
+<ul>
+<li><p>The root document has a <code class="docutils literal notranslate"><span class="pre">name</span></code> entry, with the name of the dataset.</p></li>
+<li><p>The foreign key columns are be of type <code class="docutils literal notranslate"><span class="pre">id</span></code> and subtype <code class="docutils literal notranslate"><span class="pre">foreign</span></code>.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">datetime</span></code> columns that are time indexes need to have the <code class="docutils literal notranslate"><span class="pre">time_index</span></code> subtype.</p></li>
 </ul>
 </li>
-<li>A CSV file containing the training samples with, at least, the following columns:<ul>
-<li>A unique index</li>
-<li>A foreign key to at least one timeseries table</li>
-<li>A time index that works as the cutoff time for the training example</li>
-<li>If the problem is supervised, a target column.</li>
+<li><p>A CSV file containing the training samples with, at least, the following columns:</p>
+<ul>
+<li><p>A unique index</p></li>
+<li><p>A foreign key to at least one timeseries table</p></li>
+<li><p>A time index that works as the cutoff time for the training example</p></li>
+<li><p>If the problem is supervised, a target column.</p></li>
 </ul>
 </li>
 </ul>
 <p>Then, for each type of timeseries that exist in the dataset, there will be:</p>
 <ul class="simple">
-<li>A CSV file containing the id of each timeseries and any additional information associated with it</li>
-<li>A CSV file containing the timeseries data with the following columns:<ul>
-<li>A unique index</li>
-<li>A foreign key to the timeseries table</li>
-<li>A time index</li>
-<li>At least a value column</li>
+<li><p>A CSV file containing the id of each timeseries and any additional information associated with it</p></li>
+<li><p>A CSV file containing the timeseries data with the following columns:</p>
+<ul>
+<li><p>A unique index</p></li>
+<li><p>A foreign key to the timeseries table</p></li>
+<li><p>A time index</p></li>
+<li><p>At least a value column</p></li>
 </ul>
 </li>
 </ul>
@@ -374,9 +383,9 @@ that we want to predict, and the name of the table where this column can be take
 </div>
 <p>Then we call the <code class="docutils literal notranslate"><span class="pre">loader.load</span></code> method, which will return three elements:</p>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">X</span></code>: The contents of the target table, where the training examples can be found, without the target column.</li>
-<li><code class="docutils literal notranslate"><span class="pre">y</span></code>: The target column, as extracted from the target table.</li>
-<li><code class="docutils literal notranslate"><span class="pre">data</span></code>: A dictionary containing the additional elements that the Pipeline will need to run, including the actual time series data.</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">X</span></code>: The contents of the target table, where the training examples can be found, without the target column.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">y</span></code>: The target column, as extracted from the target table.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code>: A dictionary containing the additional elements that the Pipeline will need to run, including the actual time series data.</p></li>
 </ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
 <span class="n">X</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
@@ -428,18 +437,18 @@ that we want to predict, and the name of the table where this column can be take
 </div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">y</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>0    1
-1    1
-2    2
-3    2
-4    1
-Name: target, dtype: int64
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span>    <span class="mi">1</span>
+<span class="mi">1</span>    <span class="mi">1</span>
+<span class="mi">2</span>    <span class="mi">2</span>
+<span class="mi">3</span>    <span class="mi">2</span>
+<span class="mi">4</span>    <span class="mi">1</span>
+<span class="n">Name</span><span class="p">:</span> <span class="n">target</span><span class="p">,</span> <span class="n">dtype</span><span class="p">:</span> <span class="n">int64</span>
 </pre></div>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>dict_keys([&#39;entities&#39;, &#39;relationships&#39;, &#39;target_entity&#39;, &#39;target_column&#39;, &#39;dataset_name&#39;])
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="n">dict_keys</span><span class="p">([</span><span class="s1">&#39;entities&#39;</span><span class="p">,</span> <span class="s1">&#39;relationships&#39;</span><span class="p">,</span> <span class="s1">&#39;target_entity&#39;</span><span class="p">,</span> <span class="s1">&#39;target_column&#39;</span><span class="p">,</span> <span class="s1">&#39;dataset_name&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -497,7 +506,7 @@ trying to figure out the best possible hyperparameters.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tsc</span><span class="o">.</span><span class="n">score</span>
 </pre></div>
 </div>
-<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>0.6212121212121213
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span><span class="p">.</span><span class="mi">6212121212121213</span>
 </pre></div>
 </div>
 <p>Once we are satisfied with the obtained cross validation score, we can proceed to call
@@ -510,7 +519,7 @@ the <code class="docutils literal notranslate"><span class="pre">fit</span></cod
 <span class="n">predictions</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span>
 </pre></div>
 </div>
-<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>array([2, 1, 2, 2, 2])
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="nb">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -537,7 +546,7 @@ the <code class="docutils literal notranslate"><span class="pre">fit</span></cod
 <span class="n">tsc</span><span class="o">.</span><span class="n">score</span>
 </pre></div>
 </div>
-<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>0.5404040404040403
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span><span class="p">.</span><span class="mi">5404040404040403</span>
 </pre></div>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tsc</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
@@ -545,24 +554,30 @@ the <code class="docutils literal notranslate"><span class="pre">fit</span></cod
 <span class="n">predictions</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span>
 </pre></div>
 </div>
-<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>array([1, 1, 1, 1, 1])
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="nb">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
 </pre></div>
 </div>
+</div>
+</div>
+<div class="section" id="what-s-next">
+<h2>What’s next?<a class="headerlink" href="#what-s-next" title="Permalink to this headline">¶</a></h2>
+<p>￼ ￼
+￼For more details about <strong>water</strong> and all its possibilities and features, please check the
+￼<a class="reference external" href="https://D3-AI.github.io/water/">project documentation site</a>!</p>
 <div class="toctree-wrapper compound">
 </div>
 <div class="toctree-wrapper compound">
 </div>
 <div class="toctree-wrapper compound">
-</div>
 </div>
 </div>
 </div>
 <div class="section" id="indices-and-tables">
 <h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
-<li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>
-<li><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></li>
-<li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
 </ul>
 </div>
 
@@ -601,25 +616,16 @@ the <code class="docutils literal notranslate"><span class="pre">fit</span></cod
   
 
 
-  
-
-    
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-    
-
-  
-
-  <script type="text/javascript" src="_static/js/theme.js"></script>
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

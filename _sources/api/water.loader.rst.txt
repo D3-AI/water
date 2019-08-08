@@ -2,6 +2,6 @@ water.loader module
 ===================
 
 .. automodule:: water.loader
-    :members:
-    :undoc-members:
-    :show-inheritance:
+   :members:
+   :undoc-members:
+   :show-inheritance:

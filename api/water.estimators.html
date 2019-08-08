@@ -17,34 +17,36 @@
   
 
   
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="water.loader module" href="water.loader.html" />
     <link rel="prev" title="water.db module" href="water.db.html" /> 
-
-  
-  <script src="../_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -102,6 +104,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../readme.html#trying-new-templates">Trying new templates</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../readme.html#what-s-next">What’s next?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a><ul>
@@ -223,68 +226,68 @@
 <span id="water-estimators-module"></span><h1>water.estimators module<a class="headerlink" href="#module-water.estimators" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="water.estimators.TimeSeriesClassifier">
-<em class="property">class </em><code class="descclassname">water.estimators.</code><code class="descname">TimeSeriesClassifier</code><span class="sig-paren">(</span><em>db=None</em>, <em>template=None</em>, <em>hyperparameters=None</em>, <em>scorer=None</em>, <em>cost=False</em>, <em>cv=None</em>, <em>cv_splits=5</em>, <em>random_state=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/water/estimators.html#TimeSeriesClassifier"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#water.estimators.TimeSeriesClassifier" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">water.estimators.</code><code class="sig-name descname">TimeSeriesClassifier</code><span class="sig-paren">(</span><em class="sig-param">db=None</em>, <em class="sig-param">template=None</em>, <em class="sig-param">hyperparameters=None</em>, <em class="sig-param">scorer=None</em>, <em class="sig-param">cost=False</em>, <em class="sig-param">cv=None</em>, <em class="sig-param">cv_splits=5</em>, <em class="sig-param">random_state=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/water/estimators.html#TimeSeriesClassifier"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#water.estimators.TimeSeriesClassifier" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#water.estimators.TimeSeriesEstimator" title="water.estimators.TimeSeriesEstimator"><code class="xref py py-class docutils literal notranslate"><span class="pre">water.estimators.TimeSeriesEstimator</span></code></a></p>
 <dl class="attribute">
 <dt id="water.estimators.TimeSeriesClassifier.template">
-<code class="descname">template</code><em class="property"> = {'hyperparameters': {'xgboost.XGBClassifier#1': {'gamma': 0, 'learning_rate': 0.1, 'max_depth': 3, 'min_child_weight': 1, 'n_estimators': 300}}, 'init_params': {'featuretools.dfs#1': {'encode': True}}, 'primitives': ['mlprimitives.preprocessing.ClassEncoder', 'featuretools.dfs', 'sklearn.preprocessing.Imputer', 'xgboost.XGBClassifier', 'mlprimitives.preprocessing.ClassDecoder']}</em><a class="headerlink" href="#water.estimators.TimeSeriesClassifier.template" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">template</code><em class="property"> = {'hyperparameters': {'xgboost.XGBClassifier#1': {'gamma': 0, 'learning_rate': 0.1, 'max_depth': 3, 'min_child_weight': 1, 'n_estimators': 300}}, 'init_params': {'featuretools.dfs#1': {'encode': True}}, 'primitives': ['mlprimitives.preprocessing.ClassEncoder', 'featuretools.dfs', 'sklearn.preprocessing.Imputer', 'xgboost.XGBClassifier', 'mlprimitives.preprocessing.ClassDecoder']}</em><a class="headerlink" href="#water.estimators.TimeSeriesClassifier.template" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="class">
 <dt id="water.estimators.TimeSeriesEstimator">
-<em class="property">class </em><code class="descclassname">water.estimators.</code><code class="descname">TimeSeriesEstimator</code><span class="sig-paren">(</span><em>db=None</em>, <em>template=None</em>, <em>hyperparameters=None</em>, <em>scorer=None</em>, <em>cost=False</em>, <em>cv=None</em>, <em>cv_splits=5</em>, <em>random_state=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/water/estimators.html#TimeSeriesEstimator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#water.estimators.TimeSeriesEstimator" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">water.estimators.</code><code class="sig-name descname">TimeSeriesEstimator</code><span class="sig-paren">(</span><em class="sig-param">db=None</em>, <em class="sig-param">template=None</em>, <em class="sig-param">hyperparameters=None</em>, <em class="sig-param">scorer=None</em>, <em class="sig-param">cost=False</em>, <em class="sig-param">cv=None</em>, <em class="sig-param">cv_splits=5</em>, <em class="sig-param">random_state=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/water/estimators.html#TimeSeriesEstimator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#water.estimators.TimeSeriesEstimator" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="method">
 <dt id="water.estimators.TimeSeriesEstimator.fit">
-<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em>, <em>y</em>, <em>data</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/water/estimators.html#TimeSeriesEstimator.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#water.estimators.TimeSeriesEstimator.fit" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param">X</em>, <em class="sig-param">y</em>, <em class="sig-param">data</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/water/estimators.html#TimeSeriesEstimator.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#water.estimators.TimeSeriesEstimator.fit" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="water.estimators.TimeSeriesEstimator.fitted">
-<code class="descname">fitted</code><em class="property"> = False</em><a class="headerlink" href="#water.estimators.TimeSeriesEstimator.fitted" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">fitted</code><em class="property"> = False</em><a class="headerlink" href="#water.estimators.TimeSeriesEstimator.fitted" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="water.estimators.TimeSeriesEstimator.get_hyperparameters">
-<code class="descname">get_hyperparameters</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/water/estimators.html#TimeSeriesEstimator.get_hyperparameters"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#water.estimators.TimeSeriesEstimator.get_hyperparameters" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_hyperparameters</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/water/estimators.html#TimeSeriesEstimator.get_hyperparameters"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#water.estimators.TimeSeriesEstimator.get_hyperparameters" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="water.estimators.TimeSeriesEstimator.predict">
-<code class="descname">predict</code><span class="sig-paren">(</span><em>X</em>, <em>data</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/water/estimators.html#TimeSeriesEstimator.predict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#water.estimators.TimeSeriesEstimator.predict" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">predict</code><span class="sig-paren">(</span><em class="sig-param">X</em>, <em class="sig-param">data</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/water/estimators.html#TimeSeriesEstimator.predict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#water.estimators.TimeSeriesEstimator.predict" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="water.estimators.TimeSeriesEstimator.score">
-<code class="descname">score</code><em class="property"> = None</em><a class="headerlink" href="#water.estimators.TimeSeriesEstimator.score" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">score</code><em class="property"> = None</em><a class="headerlink" href="#water.estimators.TimeSeriesEstimator.score" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="water.estimators.TimeSeriesEstimator.set_hyperparameters">
-<code class="descname">set_hyperparameters</code><span class="sig-paren">(</span><em>hyperparameters</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/water/estimators.html#TimeSeriesEstimator.set_hyperparameters"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#water.estimators.TimeSeriesEstimator.set_hyperparameters" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">set_hyperparameters</code><span class="sig-paren">(</span><em class="sig-param">hyperparameters</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/water/estimators.html#TimeSeriesEstimator.set_hyperparameters"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#water.estimators.TimeSeriesEstimator.set_hyperparameters" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="water.estimators.TimeSeriesEstimator.template">
-<code class="descname">template</code><em class="property"> = None</em><a class="headerlink" href="#water.estimators.TimeSeriesEstimator.template" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">template</code><em class="property"> = None</em><a class="headerlink" href="#water.estimators.TimeSeriesEstimator.template" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="water.estimators.TimeSeriesEstimator.tune">
-<code class="descname">tune</code><span class="sig-paren">(</span><em>X</em>, <em>y</em>, <em>data</em>, <em>iterations=10</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/water/estimators.html#TimeSeriesEstimator.tune"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#water.estimators.TimeSeriesEstimator.tune" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">tune</code><span class="sig-paren">(</span><em class="sig-param">X</em>, <em class="sig-param">y</em>, <em class="sig-param">data</em>, <em class="sig-param">iterations=10</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/water/estimators.html#TimeSeriesEstimator.tune"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#water.estimators.TimeSeriesEstimator.tune" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="class">
 <dt id="water.estimators.TimeSeriesRegressor">
-<em class="property">class </em><code class="descclassname">water.estimators.</code><code class="descname">TimeSeriesRegressor</code><span class="sig-paren">(</span><em>db=None</em>, <em>template=None</em>, <em>hyperparameters=None</em>, <em>scorer=None</em>, <em>cost=False</em>, <em>cv=None</em>, <em>cv_splits=5</em>, <em>random_state=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/water/estimators.html#TimeSeriesRegressor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#water.estimators.TimeSeriesRegressor" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">water.estimators.</code><code class="sig-name descname">TimeSeriesRegressor</code><span class="sig-paren">(</span><em class="sig-param">db=None</em>, <em class="sig-param">template=None</em>, <em class="sig-param">hyperparameters=None</em>, <em class="sig-param">scorer=None</em>, <em class="sig-param">cost=False</em>, <em class="sig-param">cv=None</em>, <em class="sig-param">cv_splits=5</em>, <em class="sig-param">random_state=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/water/estimators.html#TimeSeriesRegressor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#water.estimators.TimeSeriesRegressor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#water.estimators.TimeSeriesEstimator" title="water.estimators.TimeSeriesEstimator"><code class="xref py py-class docutils literal notranslate"><span class="pre">water.estimators.TimeSeriesEstimator</span></code></a></p>
 <dl class="attribute">
 <dt id="water.estimators.TimeSeriesRegressor.template">
-<code class="descname">template</code><em class="property"> = {'hyperparameters': {'xgboost.XGBRegressor#1': {'gamma': 0, 'learning_rate': 0.1, 'max_depth': 3, 'min_child_weight': 1, 'n_estimators': 300, 'n_jobs': -1}}, 'init_params': {'featuretools.dfs#1': {'encode': True}}, 'primitives': ['featuretools.dfs', 'sklearn.preprocessing.Imputer', 'sklearn.preprocessing.StandardScaler', 'xgboost.XGBRegressor']}</em><a class="headerlink" href="#water.estimators.TimeSeriesRegressor.template" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">template</code><em class="property"> = {'hyperparameters': {'xgboost.XGBRegressor#1': {'gamma': 0, 'learning_rate': 0.1, 'max_depth': 3, 'min_child_weight': 1, 'n_estimators': 300, 'n_jobs': -1}}, 'init_params': {'featuretools.dfs#1': {'encode': True}}, 'primitives': ['featuretools.dfs', 'sklearn.preprocessing.Imputer', 'sklearn.preprocessing.StandardScaler', 'xgboost.XGBRegressor']}</em><a class="headerlink" href="#water.estimators.TimeSeriesRegressor.template" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -302,7 +305,7 @@
         <a href="water.loader.html" class="btn btn-neutral float-right" title="water.loader module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="water.db.html" class="btn btn-neutral" title="water.db module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="water.db.html" class="btn btn-neutral float-left" title="water.db module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -328,25 +331,16 @@
   
 
 
-  
-
-    
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-    
-
-  
-
-  <script type="text/javascript" src="../_static/js/theme.js"></script>
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

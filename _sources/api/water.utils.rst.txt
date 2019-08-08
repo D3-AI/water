@@ -2,6 +2,6 @@ water.utils module
 ==================
 
 .. automodule:: water.utils
-    :members:
-    :undoc-members:
-    :show-inheritance:
+   :members:
+   :undoc-members:
+   :show-inheritance:

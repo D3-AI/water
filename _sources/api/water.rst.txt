@@ -2,9 +2,9 @@ water package
 =============
 
 .. automodule:: water
-    :members:
-    :undoc-members:
-    :show-inheritance:
+   :members:
+   :undoc-members:
+   :show-inheritance:
 
 Submodules
 ----------
@@ -15,4 +15,3 @@ Submodules
    water.estimators
    water.loader
    water.utils
-
