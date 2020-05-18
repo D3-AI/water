@@ -5,7 +5,7 @@
 </p>
 
 [![PyPI Shield](https://img.shields.io/pypi/v/water.svg)](https://pypi.python.org/pypi/ml-water)
-[![Travis CI Shield](https://travis-ci.org/D3-AI/water.svg?branch=master)](https://travis-ci.org/D3-AI/water)
+[![Travis CI Shield](https://travis-ci.org/signals-dev/water.svg?branch=master)](https://travis-ci.org/signals-dev/water)
 [![Downloads](https://pepy.tech/badge/ml-water)](https://pepy.tech/project/ml-water)
 
 # Water
@@ -13,8 +13,8 @@
 Machine learning for internet of things related to water systems.
 
 - Free software: MIT license
-- Documentation: https://D3-AI.github.io/water
-- Homepage: https://github.com/D3-AI/water
+- Documentation: https://signals-dev.github.io/water
+- Homepage: https://github.com/signals-dev/water
 
 # Overview
 
@@ -139,7 +139,7 @@ pip install ml-water
 For development, you can also clone the repository and install it from sources
 
 ```bash
-git clone git@github.com:D3-AI/water.git
+git clone git@github.com:signals-dev/water.git
 cd water
 make install-develop
 ```
@@ -408,4 +408,4 @@ predictions[0:5]
 ## What's next?
 ￼ ￼
 ￼For more details about **water** and all its possibilities and features, please check the
-￼[project documentation site](https://D3-AI.github.io/water/)!
+￼[project documentation site](https://signals-dev.github.io/water/)!
